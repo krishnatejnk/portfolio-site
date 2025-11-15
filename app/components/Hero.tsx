@@ -40,7 +40,6 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-blue-900/20 to-black">
-      {/* Animated background gradient */}
       <div
         className="absolute inset-0 opacity-30"
         style={{
@@ -48,7 +47,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Floating orbs */}
       <motion.div
         className="absolute top-20 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
         animate={{
@@ -81,7 +79,6 @@ export default function Hero() {
         animate="visible"
       >
         <div className="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-12 lg:gap-16">
-          {/* Profile Image */}
           <motion.div
             variants={itemVariants}
             className="flex-shrink-0"
@@ -98,7 +95,6 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Text Content */}
           <div className="flex-1 text-center md:text-left">
             <motion.h1
               variants={itemVariants}
@@ -118,10 +114,18 @@ export default function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl md:max-w-none mx-auto md:mx-0"
+              className="text-lg md:text-xl text-gray-400 mb-6 max-w-2xl md:max-w-none mx-auto md:mx-0"
             >
               Building scalable cloud-native solutions with Java, Python, and AWS.
               Transforming complex systems into efficient, reliable microservices.
+            </motion.p>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-base md:text-lg text-blue-400 mb-12 max-w-2xl md:max-w-none mx-auto md:mx-0 font-medium"
+            >
+              Currently pursuing Master of Applied Computer Science at Dalhousie University.
+              Seeking internship or early career opportunities in software engineering and cloud architecture.
             </motion.p>
 
             <motion.div

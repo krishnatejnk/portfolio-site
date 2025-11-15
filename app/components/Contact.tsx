@@ -13,7 +13,7 @@ const socialLinks = [
 
 export default function Contact() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,7 +39,6 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      // Check if response is ok and has content
       const contentType = response.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
         throw new Error("Server returned an invalid response. Please try again later.");
@@ -64,7 +63,6 @@ export default function Contact() {
       });
       setFormData({ name: "", email: "", message: "" });
 
-      // Clear success message after 5 seconds
       setTimeout(() => {
         setStatus({ type: null, message: "" });
       }, 5000);
@@ -86,7 +84,6 @@ export default function Contact() {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    // Clear status when user starts typing
     if (status.type) {
       setStatus({ type: null, message: "" });
     }
@@ -102,7 +99,7 @@ export default function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
@@ -112,16 +109,16 @@ export default function Contact() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I&apos;d love to hear from you!
+            I&apos;m actively seeking internship and early career opportunities in software engineering and cloud architecture. 
+            As I approach graduation, I&apos;m eager to contribute to innovative teams and grow professionally.
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           >
             <div className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-3xl p-8">
               {status.type && (
@@ -138,10 +135,10 @@ export default function Contact() {
                 </motion.div>
               )}
               <form onSubmit={handleSubmit} className="space-y-6">
-                <motion.div
+                  <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.3 }}
+                  transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
                 >
                   <label htmlFor="name" className="block text-gray-300 mb-2 font-medium">
                     Name
@@ -161,7 +158,7 @@ export default function Contact() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.4 }}
+                  transition={{ delay: 0.25, duration: 0.5, ease: "easeOut" }}
                 >
                   <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">
                     Email
@@ -181,7 +178,7 @@ export default function Contact() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
                 >
                   <label htmlFor="message" className="block text-gray-300 mb-2 font-medium">
                     Message
@@ -202,7 +199,7 @@ export default function Contact() {
                   type="submit"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.6 }}
+                  transition={{ delay: 0.35, duration: 0.5, ease: "easeOut" }}
                   whileHover={!isLoading ? { scale: 1.05 } : {}}
                   whileTap={!isLoading ? { scale: 0.95 } : {}}
                   disabled={isLoading}
@@ -242,11 +239,10 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="space-y-8"
           >
             <div>
@@ -260,7 +256,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
+                    transition={{ delay: 0.2 + index * 0.08, duration: 0.5, ease: "easeOut" }}
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.95 }}
                     className={`bg-gradient-to-br ${social.color} p-6 rounded-2xl text-center group hover:shadow-lg transition-all`}
@@ -274,12 +270,15 @@ export default function Contact() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.7 }}
+              transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
               className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6"
             >
-              <h4 className="text-xl font-bold text-white mb-4">Let&apos;s Work Together</h4>
+              <h4 className="text-xl font-bold text-white mb-4">Open to Opportunities</h4>
               <p className="text-gray-300 leading-relaxed mb-4">
-                I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                As a soon-to-be graduate with hands-on experience in microservices, cloud architecture, and full-stack development, 
+                I&apos;m actively seeking internship or entry-level positions where I can contribute to meaningful projects and 
+                continue growing as a software engineer. I&apos;m particularly interested in roles involving cloud-native applications, 
+                distributed systems, and modern software development practices.
               </p>
               <p className="text-blue-400 font-semibold mb-2">krishnatejnk@gmail.com</p>
               <p className="text-blue-400 font-semibold mb-2">+1 (902) 989-3113</p>

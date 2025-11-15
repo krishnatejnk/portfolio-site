@@ -53,11 +53,19 @@ const projects = [
     github: "#",
     type: "NLP Project",
   },
+  {
+    title: "Portfolio Website",
+    description: "Modern, responsive portfolio website built with Next.js and TypeScript, featuring smooth animations with Framer Motion and a bold, creative design. Includes contact form integration with Resend API, fully responsive layout, and optimized performance with Next.js App Router.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "React", "Resend API"],
+    link: "#",
+    github: "https://github.com/krishnatejnk/portfolio-site",
+    type: "Portfolio Project",
+  },
 ];
 
 export default function Projects() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   return (
     <section
@@ -69,7 +77,7 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
@@ -86,9 +94,9 @@ export default function Projects() {
               key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative"
+              className={`group relative ${index === 6 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2' : ''}`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
               <div className="relative bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-3xl p-6 h-full flex flex-col overflow-hidden">

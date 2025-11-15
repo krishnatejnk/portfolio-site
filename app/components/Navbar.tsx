@@ -15,12 +15,19 @@ const navItems = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
       
-      // Update active section based on scroll position
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+      const scrollableHeight = documentHeight - windowHeight;
+      const progress = scrollableHeight > 0 ? (scrollTop / scrollableHeight) * 100 : 0;
+      setScrollProgress(Math.min(100, Math.max(0, progress)));
+      
       const sections = navItems.map(item => item.href.substring(1));
       const current = sections.find(section => {
         const element = document.getElementById(section);
@@ -34,6 +41,7 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -56,6 +64,14 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
+      <div className="absolute bottom-0 left-0 h-0.5 bg-blue-500/30 w-full">
+        <motion.div
+          className="h-full bg-gradient-to-r from-blue-500 to-blue-600"
+          style={{ width: `${scrollProgress}%` }}
+          transition={{ duration: 0.1, ease: "linear" }}
+        />
+      </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <motion.a
@@ -68,7 +84,7 @@ export default function Navbar() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            Portfolio
+            Krishna Tej
           </motion.a>
 
           <div className="hidden md:flex space-x-8">
@@ -100,7 +116,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Mobile menu button */}
           <motion.button
             className="md:hidden text-white"
             whileTap={{ scale: 0.9 }}

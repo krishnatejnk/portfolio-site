@@ -6,7 +6,7 @@ import { useRef } from "react";
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   return (
     <section
@@ -18,7 +18,7 @@ export default function About() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
@@ -33,7 +33,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="relative"
           >
             <div className="relative z-10">
@@ -62,7 +62,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="grid grid-cols-2 gap-4"
           >
             {[
@@ -75,7 +75,7 @@ export default function About() {
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="bg-gradient-to-br bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6 text-center"
               >

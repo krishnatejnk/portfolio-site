@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    // Debug: Log all environment variables that contain "RESEND" or "NEXT"
     if (process.env.NODE_ENV === "development") {
       const envKeys = Object.keys(process.env).filter(key => 
         key.includes("RESEND") || key.includes("NEXT")
@@ -13,7 +12,6 @@ export async function POST(request: NextRequest) {
       console.log("RESEND_API_KEY length:", process.env.RESEND_API_KEY?.length || 0);
     }
 
-    // Check if RESEND_API_KEY is configured
     if (!process.env.RESEND_API_KEY) {
       console.error("RESEND_API_KEY is not configured. Make sure:");
       console.error("1. .env.local file exists in the project root");
@@ -32,7 +30,6 @@ export async function POST(request: NextRequest) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    // Check if request has a body
     let body;
     try {
       body = await request.json();
@@ -46,7 +43,6 @@ export async function POST(request: NextRequest) {
 
     const { name, email, message } = body;
 
-    // Validate input
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "All fields are required" },
@@ -54,7 +50,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -63,10 +58,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>", // Update this with your verified domain
-      to: ["krishnatejnk@gmail.com"], // Your email address
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: ["krishnatejnk@gmail.com"],
       replyTo: email,
       subject: `Portfolio Contact Form: Message from ${name}`,
       html: `
@@ -99,7 +93,6 @@ This message was sent from your portfolio contact form.
 
     if (error) {
       console.error("Resend error:", error);
-      // Provide more specific error message
       const errorMessage = error instanceof Error ? error.message : "Unknown error";
       return NextResponse.json(
         { 

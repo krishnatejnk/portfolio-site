@@ -54,7 +54,7 @@ const skillCategories = [
 
 export default function Skills() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   return (
     <section
@@ -66,7 +66,7 @@ export default function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
@@ -77,14 +77,13 @@ export default function Skills() {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto"></div>
         </motion.div>
 
-        {/* Skill Categories */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={categoryIndex}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.2 }}
+              transition={{ duration: 0.5, delay: categoryIndex * 0.15, ease: "easeOut" }}
               whileHover={{ scale: 1.05, y: -5 }}
               className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6"
             >
@@ -104,7 +103,7 @@ export default function Skills() {
                       <motion.div
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                        transition={{ duration: 1, delay: categoryIndex * 0.2 + skillIndex * 0.1 }}
+                        transition={{ duration: 0.8, delay: categoryIndex * 0.15 + skillIndex * 0.08, ease: "easeOut" }}
                         className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"
                       />
                     </div>
@@ -114,29 +113,7 @@ export default function Skills() {
             </motion.div>
           ))}
         </div>
-
-        {/* Floating Tech Icons
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="grid grid-cols-5 md:grid-cols-10 gap-4"
-        >
-          {techIcons.map((icon, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-              transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
-              whileHover={{ scale: 1.2, rotate: 360 }}
-              className="text-4xl md:text-5xl text-center p-4 bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-xl hover:border-purple-500/50 transition-colors"
-            >
-              {icon}
-            </motion.div>
-          ))}
-        </motion.div> */}
       </div>
     </section>
   );
 }
-

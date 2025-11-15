@@ -25,7 +25,7 @@ const experiences = [
 
 export default function Experience() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   return (
     <section
@@ -37,7 +37,7 @@ export default function Experience() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
@@ -49,7 +49,6 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-blue-600 to-blue-700 transform md:-translate-x-1/2"></div>
 
           <div className="space-y-12">
@@ -58,15 +57,13 @@ export default function Experience() {
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
                 className={`relative flex items-center ${
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                {/* Timeline dot */}
                 <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-black transform md:-translate-x-1/2 z-10"></div>
 
-                {/* Content card */}
                 <div
                   className={`ml-20 md:ml-0 md:w-5/12 ${
                     index % 2 === 0 ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"
