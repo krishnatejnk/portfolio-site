@@ -60,7 +60,7 @@ export default function Contact() {
 
       setStatus({
         type: "success",
-        message: "Thank you for your message! I'll get back to you soon.",
+        message: "Thank you for your message! I&apos;ll get back to you soon.",
       });
       setFormData({ name: "", email: "", message: "" });
 
@@ -112,7 +112,7 @@ export default function Contact() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from you!
+            Have a project in mind or want to collaborate? I&apos;d love to hear from you!
           </p>
         </motion.div>
 
@@ -277,9 +277,9 @@ export default function Contact() {
               transition={{ delay: 0.7 }}
               className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6"
             >
-              <h4 className="text-xl font-bold text-white mb-4">Let's Work Together</h4>
+              <h4 className="text-xl font-bold text-white mb-4">Let&apos;s Work Together</h4>
               <p className="text-gray-300 leading-relaxed mb-4">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
               </p>
               <p className="text-blue-400 font-semibold mb-2">krishnatejnk@gmail.com</p>
               <p className="text-blue-400 font-semibold mb-2">+1 (902) 989-3113</p>
