@@ -12,6 +12,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        typewriter: ["LTC Remington W01 Typewriter", "Courier New", "Courier", "monospace"],
+      },
       animation: {
         'gradient': 'gradient 8s linear infinite',
       },

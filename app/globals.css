@@ -1,3 +1,5 @@
+@import url(https://db.onlinewebfonts.com/c/ebc4fe88a12b20cc8e371ad2eb237147?family=LTC+Remington+W01+Typewriter);
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,7 +19,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "LTC Remington W01 Typewriter", "Courier New", Courier, monospace;
 }
 
 @layer utilities {
