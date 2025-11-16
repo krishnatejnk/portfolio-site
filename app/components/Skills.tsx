@@ -85,7 +85,7 @@ export default function Skills() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.15, ease: "easeOut" }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6"
+              className="bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6"
             >
               <h3 className="text-2xl font-bold text-white mb-6 text-center">
                 <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
@@ -96,10 +96,10 @@ export default function Skills() {
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex}>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-300 font-medium">{skill.name}</span>
+                      <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
                       <span className="text-blue-400 text-sm font-semibold">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}

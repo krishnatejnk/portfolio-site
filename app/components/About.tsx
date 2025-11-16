@@ -38,19 +38,19 @@ export default function About() {
           >
             <div className="relative z-10">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl blur-2xl opacity-30"></div>
-              <div className="relative bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-3xl p-8">
-                <p className="text-lg text-gray-300 leading-relaxed mb-6">
+              <div className="relative bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-3xl p-8">
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                   I&apos;m a Software Engineer with a passion for building cloud-native applications
                   and distributed systems. Currently pursuing my Master of Applied Computer Science
                   at Dalhousie University, I specialize in Java, Spring Boot, Python, and AWS cloud services.
                 </p>
-                <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                   With experience at companies like Azuga Inc and Morgan Stanley, I&apos;ve built and
                   maintained microservices architectures, optimized data pipelines with Apache Kafka,
                   and designed scalable cloud solutions. I&apos;m passionate about creating efficient,
                   reliable systems that handle real-world challenges.
                 </p>
-                <p className="text-lg text-gray-300 leading-relaxed">
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                   When I&apos;m not coding, I&apos;m exploring new technologies, working on side projects,
                   or contributing to open-source. I&apos;m always eager to learn and apply cutting-edge
                   solutions to complex problems.
@@ -77,12 +77,12 @@ export default function About() {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-gradient-to-br bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6 text-center"
+                className="bg-gradient-to-br bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6 text-center"
               >
                 <div className={`text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

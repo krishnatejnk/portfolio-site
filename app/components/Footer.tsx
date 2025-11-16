@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-black to-blue-900/10 border-t border-blue-500/20">
+    <footer className="relative py-12 px-4 sm:px-6 lg:px-8 border-t bg-white/80 dark:bg-gradient-to-t dark:from-black dark:to-blue-900/10 border-slate-200 dark:border-blue-500/20">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <motion.div
@@ -19,7 +19,7 @@ export default function Footer() {
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-2">
               Portfolio
             </h3>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
               © {currentYear} All rights reserved. Built with Next.js & Framer Motion
             </p>
           </motion.div>
@@ -42,7 +42,7 @@ export default function Footer() {
                     element.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -69,7 +69,7 @@ export default function Footer() {
                 href={social.url}
                 target={social.url.startsWith("http") ? "_blank" : undefined}
                 rel={social.url.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="w-10 h-10 flex items-center justify-center bg-black/50 border border-blue-500/30 rounded-full text-xs font-semibold text-blue-400 hover:border-blue-500 hover:bg-blue-500/10 transition-all"
+                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-black/50 border border-slate-200 dark:border-blue-500/30 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 hover:border-blue-500 hover:bg-blue-100/40 dark:hover:bg-blue-500/10 transition-all"
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
                 title={social.name}
@@ -85,9 +85,9 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-8 pt-8 border-t border-blue-500/20 text-center"
+          className="mt-8 pt-8 border-t border-slate-200 dark:border-blue-500/20 text-center"
         >
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-600 dark:text-gray-500 text-sm">
             Made with passion and dedication
           </p>
         </motion.div>

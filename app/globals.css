@@ -38,3 +38,19 @@ html {
   box-sizing: border-box;
 }
 
+/* Theme variables controlled by html class */
+html.light {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* Default to dark if no explicit class is set */
+html:not(.light):not(.dark) {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+

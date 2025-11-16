@@ -120,7 +120,7 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           >
-            <div className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-3xl p-8">
+            <div className="bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-3xl p-8">
               {status.type && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -140,7 +140,7 @@ export default function Contact() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
                 >
-                  <label htmlFor="name" className="block text-gray-300 mb-2 font-medium">
+                  <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
                     Name
                   </label>
                   <input
@@ -150,7 +150,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-black/50 border border-blue-500/30 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all"
+                    className="w-full px-4 py-3 bg-white/70 dark:bg-black/50 border border-slate-200 dark:border-blue-500/30 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all"
                     placeholder="Your Name"
                   />
                 </motion.div>
@@ -160,7 +160,7 @@ export default function Contact() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.25, duration: 0.5, ease: "easeOut" }}
                 >
-                  <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">
+                  <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
                     Email
                   </label>
                   <input
@@ -170,7 +170,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-black/50 border border-blue-500/30 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all"
+                    className="w-full px-4 py-3 bg-white/70 dark:bg-black/50 border border-slate-200 dark:border-blue-500/30 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all"
                     placeholder="your.email@example.com"
                   />
                 </motion.div>
@@ -180,7 +180,7 @@ export default function Contact() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
                 >
-                  <label htmlFor="message" className="block text-gray-300 mb-2 font-medium">
+                  <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
                     Message
                   </label>
                   <textarea
@@ -190,7 +190,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 bg-black/50 border border-blue-500/30 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
+                    className="w-full px-4 py-3 bg-white/70 dark:bg-black/50 border border-slate-200 dark:border-blue-500/30 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
                     placeholder="Your message here..."
                   />
                 </motion.div>
@@ -271,10 +271,10 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
-              className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6"
+              className="bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6"
             >
               <h4 className="text-xl font-bold text-white mb-4">Open to Opportunities</h4>
-              <p className="text-gray-300 leading-relaxed mb-4">
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 As a soon-to-be graduate with hands-on experience in microservices, cloud architecture, and full-stack development, 
                 I&apos;m actively seeking internship or entry-level positions where I can contribute to meaningful projects and 
                 continue growing as a software engineer. I&apos;m particularly interested in roles involving cloud-native applications, 

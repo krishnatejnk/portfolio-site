@@ -99,7 +99,7 @@ export default function Projects() {
               className={`group relative ${index === 6 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2' : ''}`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-              <div className="relative bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-3xl p-6 h-full flex flex-col overflow-hidden">
+              <div className="relative bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-3xl p-6 h-full flex flex-col overflow-hidden">
                 <div className="flex items-start justify-between mb-3">
                   {project.type && (
                     <span className="text-xs px-2 py-1 bg-blue-600/20 border border-blue-500/50 rounded text-blue-300">
@@ -108,7 +108,7 @@ export default function Projects() {
                   )}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
-                <p className="text-gray-300 mb-4 flex-grow leading-relaxed text-sm">{project.description}</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow leading-relaxed text-sm">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, techIndex) => (

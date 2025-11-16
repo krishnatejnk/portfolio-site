@@ -49,7 +49,7 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-blue-600 to-blue-700 transform md:-translate-x-1/2"></div>
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 transform md:-translate-x-1/2 bg-slate-200 dark:bg-gradient-to-b dark:from-blue-500 dark:via-blue-600 dark:to-blue-700"></div>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -71,7 +71,7 @@ export default function Experience() {
                 >
                   <motion.div
                     whileHover={{ scale: 1.02, y: -5 }}
-                    className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6 relative overflow-hidden"
+                    className="bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6 relative overflow-hidden"
                   >
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-600/20 to-blue-700/20 rounded-full blur-2xl"></div>
                     <div className="relative z-10">
@@ -80,8 +80,8 @@ export default function Experience() {
                         <span className="text-sm text-blue-400 font-semibold">{exp.period}</span>
                       </div>
                       <h4 className="text-lg text-blue-300 mb-2">{exp.company}</h4>
-                      <p className="text-sm text-gray-400 mb-4">{exp.location}</p>
-                      <p className="text-gray-300 mb-4 leading-relaxed">{exp.description}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{exp.location}</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{exp.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {exp.technologies.map((tech, techIndex) => (
                           <motion.span

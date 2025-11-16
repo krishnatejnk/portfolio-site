@@ -16,6 +16,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,12 +47,31 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Initialize theme
+  useEffect(() => {
+    const saved = (typeof window !== "undefined" ? localStorage.getItem("theme") : null) as "light" | "dark" | null;
+    const prefersDark = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = saved ?? (prefersDark ? "dark" : "light");
+    setTheme(next);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(next);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(next);
+    localStorage.setItem("theme", next);
+  };
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+    setIsMenuOpen(false);
   };
 
   return (
@@ -60,8 +81,8 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-black/80 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+          ? "backdrop-blur-md shadow-lg dark:bg-black/80 bg-white/80"
+          : "bg-transparent dark:bg-transparent"
       }`}
     >
       <div className="absolute bottom-0 left-0 h-0.5 bg-blue-500/30 w-full">
@@ -79,6 +100,7 @@ export default function Navbar() {
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
+              setIsMenuOpen(false);
             }}
             className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent"
             whileHover={{ scale: 1.1 }}
@@ -87,7 +109,28 @@ export default function Navbar() {
             Krishna Tej
           </motion.a>
 
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
+            {/* Lever-style theme toggle (desktop) */}
+            <button
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed={theme === "dark"}
+              onClick={toggleTheme}
+              className="relative inline-flex items-center justify-center w-16 h-8 rounded-full border border-blue-500/30 transition-colors bg-white/70 dark:bg-black/40 hover:bg-white/80 dark:hover:bg-black/50"
+            >
+              <div className="absolute inset-0 px-2 flex items-center justify-between text-[10px] font-semibold">
+                <span className={`${theme === "light" ? "text-blue-600" : "text-gray-500"}`}>L</span>
+                <span className={`${theme === "dark" ? "text-blue-400" : "text-gray-500"}`}>D</span>
+              </div>
+              <motion.div
+                className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 shadow-lg"
+                animate={{ x: theme === "dark" ? 32 : 0, rotate: theme === "dark" ? 18 : -18 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
+              >
+                <div className="absolute top-1/2 right-[-6px] -translate-y-1/2 w-2 h-3 bg-blue-300/80 rounded-sm" />
+              </motion.div>
+            </button>
+
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
@@ -95,8 +138,8 @@ export default function Navbar() {
                 onClick={(e) => handleClick(e, item.href)}
                 className={`relative px-3 py-2 text-sm font-medium transition-colors ${
                   activeSection === item.href.substring(1)
-                    ? "text-blue-400"
-                    : "text-gray-300 hover:text-white"
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
                 }`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -116,25 +159,69 @@ export default function Navbar() {
             ))}
           </div>
 
-          <motion.button
-            className="md:hidden text-white"
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="flex items-center gap-3 md:hidden">
+            {/* Lever toggle (mobile) */}
+            <button
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed={theme === "dark"}
+              onClick={toggleTheme}
+              className="relative inline-flex items-center justify-center w-14 h-8 rounded-full border border-blue-500/30 transition-colors bg-white/70 dark:bg-black/40 hover:bg-white/80 dark:hover:bg-black/50"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
+              <motion.div
+                className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 shadow-lg"
+                animate={{ x: theme === "dark" ? 24 : 0, rotate: theme === "dark" ? 18 : -18 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
               />
-            </svg>
-          </motion.button>
+            </button>
+
+            <motion.button
+              className="md:hidden text-gray-900 dark:text-white"
+              whileTap={{ scale: 0.9 }}
+              aria-label="Toggle menu"
+              onClick={() => setIsMenuOpen((v) => !v)}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                />
+              </svg>
+            </motion.button>
+          </div>
         </div>
+
+        {/* Mobile menu */}
+        <motion.div
+          initial={false}
+          animate={isMenuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="md:hidden overflow-hidden"
+        >
+          <div className="pt-2 pb-4 space-y-1">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={(e) => handleClick(e, item.href)}
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  activeSection === item.href.substring(1)
+                    ? "text-blue-700 dark:text-blue-400 bg-blue-200/40 dark:bg-blue-500/10"
+                    : "text-gray-700 hover:bg-blue-100/50 hover:text-black dark:text-gray-200 dark:hover:bg-blue-500/10 dark:hover:text-white"
+                }`}
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </motion.nav>
   );
