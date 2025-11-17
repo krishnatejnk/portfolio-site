@@ -94,25 +94,31 @@ export default function Education() {
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-600/20 to-blue-700/20 rounded-full blur-2xl"></div>
                     <div className="relative z-10">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                        <h3 className="text-2xl font-bold text-white mb-1">{edu.degree}</h3>
-                        <span className="text-sm text-blue-400 font-semibold">{edu.period}</span>
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{edu.degree}</h3>
+                        <div className="text-sm text-blue-600 dark:text-blue-400 font-semibold text-right">
+                          {edu.period.split(' - ').map((part, idx) => (
+                            <div key={idx}>
+                              {idx === 0 ? part : `- ${part}`}
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <h4 className="text-lg text-blue-300 mb-2">{edu.institution}</h4>
+                      <h4 className="text-lg text-blue-700 dark:text-blue-300 mb-2">{edu.institution}</h4>
                       {edu.location && <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{edu.location}</p>}
                       {edu.gpa && (
-                        <p className="text-sm text-blue-400 font-semibold mb-4">
+                        <p className="text-sm text-blue-600 dark:text-blue-400 font-semibold mb-4">
                           GPA: {edu.gpa}
                         </p>
                       )}
                       <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{edu.description}</p>
                       {edu.courses && edu.courses.length > 0 && (
                         <div className="space-y-2">
-                          <p className="text-sm font-semibold text-blue-300">Relevant Courses:</p>
+                          <p className="text-sm font-semibold text-blue-700 dark:text-blue-300">Relevant Courses:</p>
                           <div className="flex flex-wrap gap-2">
                             {edu.courses.map((course, courseIndex) => (
                               <span
                                 key={courseIndex}
-                                className="px-3 py-1 bg-gradient-to-r from-blue-600/20 to-blue-700/20 border border-blue-500/50 rounded-full text-xs text-blue-300"
+                                className="px-3 py-1 bg-gradient-to-r from-blue-600/20 to-blue-700/20 border border-blue-500/50 rounded-full text-xs text-blue-700 dark:text-blue-300"
                               >
                                 {course}
                               </span>

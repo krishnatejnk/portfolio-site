@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const projects = [
   {
@@ -66,6 +66,17 @@ const projects = [
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+
+  const openModal = (index: number) => {
+    setSelectedProject(index);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+    document.body.style.overflow = "unset";
+  };
 
   return (
     <section
@@ -99,59 +110,149 @@ export default function Projects() {
               className={`group relative ${index === 6 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2' : ''}`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-              <div className="relative bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-3xl p-6 h-full flex flex-col overflow-hidden">
+              <motion.div
+                onClick={() => openModal(index)}
+                className="relative bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-3xl p-6 h-full flex flex-col overflow-hidden cursor-pointer"
+              >
                 <div className="flex items-start justify-between mb-3">
                   {project.type && (
-                    <span className="text-xs px-2 py-1 bg-blue-600/20 border border-blue-500/50 rounded text-blue-300">
+                    <span className="text-xs px-2 py-1 bg-blue-600/20 border border-blue-500/50 rounded text-blue-700 dark:text-blue-300">
                       {project.type}
                     </span>
                   )}
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow leading-relaxed text-sm">{project.description}</p>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{project.title}</h3>
                 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4 flex-grow">
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-2 py-1 bg-blue-600/20 border border-blue-500/50 rounded text-xs text-blue-300"
+                      className="px-2 py-1 bg-gradient-to-r from-blue-600/30 to-blue-700/30 border border-blue-500/50 rounded-full text-xs text-blue-700 dark:text-blue-300"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex gap-4">
-                  {project.link && project.link !== "#" && (
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg text-center text-white font-semibold"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Live Demo
-                    </motion.a>
-                  )}
-                  {project.github && project.github !== "#" && (
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`px-4 py-2 border border-blue-500 rounded-lg text-center text-blue-400 font-semibold hover:bg-blue-500/10 ${project.link && project.link !== "#" ? "flex-1" : "w-full"}`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      GitHub
-                    </motion.a>
-                  )}
-                </div>
-              </div>
+                {project.github && project.github !== "#" && (
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-full px-4 py-2 border border-blue-500 rounded-lg text-center text-blue-600 dark:text-blue-400 font-semibold hover:bg-blue-500/10"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    GitHub
+                  </motion.a>
+                )}
+                <p className="text-xs text-gray-500 dark:text-gray-500 italic mt-3 text-center">Click to see details</p>
+              </motion.div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedProject !== null && (
+          <>
+            {/* Backdrop with blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={closeModal}
+              className="fixed inset-0 bg-black/50 backdrop-blur-md z-50"
+            />
+            
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 50 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              onClick={closeModal}
+            >
+              <motion.div
+                onClick={(e) => e.stopPropagation()}
+                className="relative bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-2xl rounded-3xl p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-600/20 to-blue-700/20 rounded-full blur-2xl"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      {projects[selectedProject].type && (
+                        <span className="inline-block text-xs px-2 py-1 bg-blue-600/20 border border-blue-500/50 rounded text-blue-700 dark:text-blue-300 mb-3">
+                          {projects[selectedProject].type}
+                        </span>
+                      )}
+                      <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                        {projects[selectedProject].title}
+                      </h3>
+                    </div>
+                    <button
+                      onClick={closeModal}
+                      className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl font-bold ml-4"
+                    >
+                      ×
+                    </button>
+                  </div>
+
+                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                    {projects[selectedProject].description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {projects[selectedProject].technologies.map((tech, techIndex) => (
+                      <motion.span
+                        key={techIndex}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: techIndex * 0.05 }}
+                        className="px-3 py-1 bg-gradient-to-r from-blue-600/30 to-blue-700/30 border border-blue-500/50 rounded-full text-sm text-blue-700 dark:text-blue-300"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+
+                  <div className="flex gap-4">
+                    {projects[selectedProject].link && projects[selectedProject].link !== "#" && (
+                      <motion.a
+                        href={projects[selectedProject].link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg text-center text-white font-semibold"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Live Demo
+                      </motion.a>
+                    )}
+                    {projects[selectedProject].github && projects[selectedProject].github !== "#" && (
+                      <motion.a
+                        href={projects[selectedProject].github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`px-4 py-2 border border-blue-500 rounded-lg text-center text-blue-600 dark:text-blue-400 font-semibold hover:bg-blue-500/10 ${projects[selectedProject].link && projects[selectedProject].link !== "#" ? "flex-1" : "w-full"}`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        GitHub
+                      </motion.a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

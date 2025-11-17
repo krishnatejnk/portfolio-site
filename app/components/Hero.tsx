@@ -107,14 +107,14 @@ export default function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-8 font-light"
+              className="text-xl md:text-2xl lg:text-3xl text-gray-800 dark:text-gray-300 mb-8 font-light"
             >
               Full Stack Engineer & Cloud Architect
             </motion.p>
 
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-gray-400 mb-6 max-w-2xl md:max-w-none mx-auto md:mx-0"
+              className="text-lg md:text-xl text-gray-700 dark:text-gray-400 mb-6 max-w-2xl md:max-w-none mx-auto md:mx-0"
             >
               Building scalable cloud-native solutions with Java, Python, and AWS.
               Transforming complex systems into efficient, reliable microservices.
@@ -122,7 +122,7 @@ export default function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="text-base md:text-lg text-blue-400 mb-12 max-w-2xl md:max-w-none mx-auto md:mx-0 font-medium"
+              className="text-base md:text-lg text-blue-600 dark:text-blue-400 mb-12 max-w-2xl md:max-w-none mx-auto md:mx-0 font-medium"
             >
               Currently pursuing Master of Applied Computer Science at Dalhousie University.
               Seeking internship or early career opportunities in software engineering and cloud architecture.
@@ -150,7 +150,7 @@ export default function Hero() {
                   e.preventDefault();
                   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-8 py-4 border-2 border-blue-500 rounded-full font-semibold text-blue-400 hover:bg-blue-500/10 transition-colors"
+                className="px-8 py-4 border-2 border-blue-500 rounded-full font-semibold text-blue-600 dark:text-blue-400 hover:bg-blue-500/10 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -167,12 +167,12 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-blue-400 rounded-full mx-auto flex justify-center"
+            className="w-6 h-10 border-2 border-blue-600 dark:border-blue-400 rounded-full mx-auto flex justify-center"
           >
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-blue-400 rounded-full mt-2"
+              className="w-1 h-3 bg-blue-600 dark:bg-blue-400 rounded-full mt-2"
             />
           </motion.div>
         </motion.div>

@@ -29,35 +29,68 @@ export default function About() {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-            className="relative"
-          >
-            <div className="relative z-10">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl blur-2xl opacity-30"></div>
-              <div className="relative bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-3xl p-8">
-                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                  I&apos;m a Software Engineer with a passion for building cloud-native applications
-                  and distributed systems. Currently pursuing my Master of Applied Computer Science
-                  at Dalhousie University, I specialize in Java, Spring Boot, Python, and AWS cloud services.
-                </p>
-                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                  With experience at companies like Azuga Inc and Morgan Stanley, I&apos;ve built and
-                  maintained microservices architectures, optimized data pipelines with Apache Kafka,
-                  and designed scalable cloud solutions. I&apos;m passionate about creating efficient,
-                  reliable systems that handle real-world challenges.
-                </p>
-                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                  When I&apos;m not coding, I&apos;m exploring new technologies, working on side projects,
-                  or contributing to open-source. I&apos;m always eager to learn and apply cutting-edge
-                  solutions to complex problems.
-                </p>
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="relative"
+            >
+              <div className="relative z-10">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl blur-2xl opacity-30"></div>
+                <div className="relative bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6">
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+                    Who I Am
+                  </h3>
+                  <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Software Engineer specializing in cloud-native applications and distributed systems. 
+                    Currently pursuing Master of Applied Computer Science at Dalhousie University.
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              className="relative"
+            >
+              <div className="relative z-10">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl blur-2xl opacity-30"></div>
+                <div className="relative bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6">
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+                    What I Do
+                  </h3>
+                  <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Build scalable microservices, optimize data pipelines, and design cloud solutions. 
+                    Experienced with Java, Spring Boot, Python, AWS, and Apache Kafka.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              className="relative"
+            >
+              <div className="relative z-10">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl blur-2xl opacity-30"></div>
+                <div className="relative bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6">
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+                    My Approach
+                  </h3>
+                  <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Passionate about creating efficient, reliable systems. Always learning and applying 
+                    cutting-edge solutions to solve complex problems.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -67,7 +100,7 @@ export default function About() {
           >
             {[
               { label: "Microservices Built", value: "15+", color: "from-blue-500 to-blue-600" },
-              { label: "Years Experience", value: "3+", color: "from-blue-600 to-blue-700" },
+              { label: "Years Experience", value: "2+", color: "from-blue-600 to-blue-700" },
               { label: "Projects Completed", value: "10+", color: "from-blue-400 to-blue-600" },
               { label: "Technologies", value: "20+", color: "from-blue-500 to-blue-700" },
             ].map((stat, index) => (
@@ -77,12 +110,12 @@ export default function About() {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-gradient-to-br bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6 text-center"
+                className="bg-gradient-to-br bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6 text-center"
               >
                 <div className={`text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-200">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

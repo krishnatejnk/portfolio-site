@@ -108,7 +108,7 @@ export default function Contact() {
             </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-700 dark:text-gray-400 text-lg max-w-2xl mx-auto">
             I&apos;m actively seeking internship and early career opportunities in software engineering and cloud architecture. 
             As I approach graduation, I&apos;m eager to contribute to innovative teams and grow professionally.
           </p>
@@ -246,7 +246,7 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Connect With Me</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Connect With Me</h3>
               <div className="grid grid-cols-2 gap-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -273,16 +273,16 @@ export default function Contact() {
               transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
               className="bg-white/70 dark:bg-black/50 backdrop-blur-sm border border-slate-200 dark:border-blue-500/30 shadow-sm rounded-2xl p-6"
             >
-              <h4 className="text-xl font-bold text-white mb-4">Open to Opportunities</h4>
+              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Open to Opportunities</h4>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 As a soon-to-be graduate with hands-on experience in microservices, cloud architecture, and full-stack development, 
                 I&apos;m actively seeking internship or entry-level positions where I can contribute to meaningful projects and 
                 continue growing as a software engineer. I&apos;m particularly interested in roles involving cloud-native applications, 
                 distributed systems, and modern software development practices.
               </p>
-              <p className="text-blue-400 font-semibold mb-2">krishnatejnk@gmail.com</p>
-              <p className="text-blue-400 font-semibold mb-2">+1 (902) 989-3113</p>
-              <p className="text-gray-400 text-sm">Halifax, Nova Scotia, Canada</p>
+              <p className="text-blue-600 dark:text-blue-400 font-semibold mb-2">krishnatejnk@gmail.com</p>
+              <p className="text-blue-600 dark:text-blue-400 font-semibold mb-2">+1 (902) 989-3113</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Halifax, Nova Scotia, Canada</p>
             </motion.div>
           </motion.div>
         </div>
